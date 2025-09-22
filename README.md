@@ -156,12 +156,16 @@ The app displays:
 
 ---
 
-## Example
+## Example and Demonstration on Hugging Face
 
 **Input video:**
 
 ```
-test_video.mp4
+A live demo of the model is available on [Hugging Face Spaces](https://huggingface.co/spaces/PneumaGo/car-counter-demo).  
+Please note:
+- When running for the first time, the model weights will be downloaded automatically.  
+- This may take some time depending on your internet connection.  
+- After loading, you can test the model by uploading an image (for detection only) or a video (for detection, tracking, and counting).  
 ```
 
 **Output:**
