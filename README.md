@@ -71,12 +71,16 @@ The custom dataset was prepared as follows:
    Frames were extracted using `ffmpeg`:
 
    ```bash
-   ffmpeg -i input_video.mp4 -vf fps=5 frames/frame_%04d.jpg
+   ffmpeg -i train.mp4 -vf fps=1.5 images_train/1_img_%03d.jpg
+   ffmpeg -i val.mp4 -vf fps=1.5 images_val/1_img_%03d.jpg
    ```
 
-   `fps=5` means 5 frames per second were saved.
+   `fps=5` means 1.5 frames per second were saved.
 
-2. **Image annotation**
+    https://drive.google.com/drive/folders/1_b0UCabCyHdtc4Kg5O3WxbrnEF4_KL8-?usp=sharing
+   
+    
+3. **Image annotation**
 
    * CVAT was used for annotation.
 
@@ -87,15 +91,24 @@ The custom dataset was prepared as follows:
      ```
 
    * Annotation was done in the CVAT web interface and exported in YOLO format.
+  
+     After exporting from CVAT, need to reorganize the dataset and create a proper data.yaml before training in YOLOv8.
+     
+     CVAT YOLO 1.1 may include extra fields (class_id, frame_id) that YOLOv8 does not support.
+     https://drive.google.com/drive/folders/1oDnWYz9InvcJQhJm4hgchVgCQ9GowvvL?usp=sharing
+     
+     YOLOv8 requires a different dataset structure (images/train, labels/train, etc.) and a custom data.yaml
+     https://drive.google.com/drive/folders/1sPUDIgf3a8Z67YhpytAzotv_K-OihMKr?usp=sharing
+     
 
-3. **Training YOLOv8**
+4. **Training YOLOv8**
    The annotated dataset was used to train a YOLOv8 model as shown in `train.py`.
 
 ---
 
 ## Dataset and Model Limitations
 
-* Dataset is relatively small (\~4800 images)
+* Dataset is relatively small train(\~90 images) val(\~30)
 * Two classes: `car` and `van`
 * `Van` class has fewer samples → weaker generalization for this class
 * Model suitable for demonstration; larger datasets needed for production-ready performance
